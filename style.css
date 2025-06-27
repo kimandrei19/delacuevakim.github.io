@@ -331,6 +331,30 @@ body.light-mode .gallery-card:hover {
     transition: color var(--transition-speed) ease;
 }
 
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.profile-picture-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 15px var(--glow-color);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.profile-picture-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .about-subheader {
     color: var(--secondary-color);
     font-size: 1.5rem;
@@ -398,6 +422,13 @@ body.light-mode .gallery-card:hover {
 
 body.light-mode #socials .social-icons-container a:hover {
     text-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 @media (min-width: 768px) {
