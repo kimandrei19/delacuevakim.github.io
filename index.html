@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio | Advanced Warfare Theme</title>
+    <title>Personal Portfolio | Kim Andrei Dela Cueva</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -41,9 +41,18 @@
     </nav>
 
     <main id="main-content">
-        <div id="initial-message" class="content-section visible">
-            <h2>// SYSTEM ONLINE //</h2>
-            <p>Press the menu icon above to initiate the profile scan.</p>
+        <div id="hero" class="content-section visible">
+            <div id="hero-image" class="hero-image-container">
+                <img src="images/profilepic.jpg" alt="A photo of Kim Andrei Dela Cueva">
+            </div>
+            <div id="hero-text" class="hero-content">
+                <h1 class="hero-title">KIM ANDREI DELA CUEVA</h1>
+                <p class="hero-subtitle">// Aspiring Web & Cybersecurity Specialist //</p>
+                <p class="hero-description">
+                    Crafting digital experiences and securing the web, one line of code at a time.
+                </p>
+                <a href="#about" id="cta-button" class="btn-primary">Explore My Profile</a>
+            </div>
         </div>
 
         <div id="gallery" class="content-section">
@@ -88,16 +97,12 @@
                 <div class="about-text">
                     <p>
                         Hello, I'm Kim Andrei Dela Cueva, a 20-year-old third-year student at the Polytechnic University
-                        of the
-                        Philippines. I have a strong passion for coding and am currently focused on learning both
-                        frontend and
-                        backend development, as well as working with databases. My goal is to pursue a career in
-                        Information
-                        Technology and eventually specialize in cybersecurity.
+                        of the Philippines. I have a strong passion for coding and am currently focused on learning both
+                        frontend and backend development, as well as working with databases. My goal is to pursue a
+                        career in Information Technology and eventually specialize in cybersecurity.
                     </p>
                 </div>
             </div>
-
             <h3 class="about-subheader">// KEY DETAILS //</h3>
             <div class="details-grid">
                 <div class="detail-item">
@@ -113,7 +118,6 @@
                     <p>City of Sto. Tomas, Batangas</p>
                 </div>
             </div>
-
             <h3 class="about-subheader">// HOBBIES & INTERESTS //</h3>
             <ul class="hobbies-list">
                 <li><i class="fas fa-basketball-ball"></i> Playing Basketball</li>
@@ -133,6 +137,8 @@
                         class="fab fa-instagram"></i></a>
                 <a href="https://github.com/kimandrei19" target="_blank" aria-label="GitHub"><i
                         class="fab fa-github"></i></a>
+                <a href="mailto:dreikim19@gmail.com" target="_blank" aria-label="Email"><i
+                        class="fas fa-envelope"></i></a>
             </div>
         </div>
     </main>
@@ -143,9 +149,15 @@
         const navLinks = document.querySelectorAll('.nav-link');
         const contentSections = document.querySelectorAll('.content-section');
         const mainContent = document.getElementById('main-content');
-        const initialMessage = document.getElementById('initial-message');
         const themeToggleBtn = document.getElementById('theme-toggle');
         const body = document.body;
+        const ctaButton = document.getElementById('cta-button');
+        const heroSection = document.getElementById('hero');
+
+        const heroImage = document.getElementById('hero-image');
+        const heroText = document.getElementById('hero-text');
+        const scanline = document.querySelector('.scanline');
+        const backgroundOverlay = document.querySelector('.background-overlay');
 
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
@@ -171,29 +183,56 @@
             contentSections.forEach(section => {
                 section.classList.remove('visible');
             });
-
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
                 targetSection.classList.add('visible');
             }
         }
 
+        function handleLinkClick(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            mainContent.style.opacity = '0';
+            setTimeout(() => {
+                heroSection.style.display = 'none';
+                showSection(targetId);
+                mainContent.style.opacity = '1';
+            }, 300);
+            hamburgerBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
         navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                mainContent.style.opacity = '0';
-
-                setTimeout(() => {
-                    initialMessage.style.display = 'none';
-                    showSection(targetId);
-                    mainContent.style.opacity = '1';
-                }, 300);
-
-                hamburgerBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+            link.addEventListener('click', handleLinkClick);
         });
+
+        ctaButton.addEventListener('click', handleLinkClick);
+
+        function handleMouseMove(e) {
+            if (window.innerWidth < 960) return;
+
+            const { clientX, clientY } = e;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            const offsetX = (clientX - centerX) / centerX;
+            const offsetY = (clientY - centerY) / centerY;
+
+            const imageStrength = 15;
+            const textStrength = 8;
+
+            heroImage.style.transform = `translate(${offsetX * imageStrength}px, ${offsetY * imageStrength}px)`;
+            heroText.style.transform = `translate(${-offsetX * textStrength}px, ${-offsetY * textStrength}px)`;
+        }
+
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            scanline.style.transform = `translateY(${scrollY * 0.1}px)`;
+            backgroundOverlay.style.transform = `translateY(${scrollY * 0.2}px)`;
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll);
     </script>
 </body>
 
