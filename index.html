@@ -7,6 +7,7 @@
     <title>Personal Portfolio | Kim Andrei Dela Cueva</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
@@ -42,10 +43,10 @@
 
     <main id="main-content">
         <div id="hero" class="content-section visible">
-            <div id="hero-image" class="hero-image-container">
+            <div id="hero-image" class="hero-image-container" data-aos="fade-right">
                 <img src="images/profilepic.jpg" alt="A photo of Kim Andrei Dela Cueva">
             </div>
-            <div id="hero-text" class="hero-content">
+            <div id="hero-text" class="hero-content" data-aos="fade-left">
                 <h1 class="hero-title">KIM ANDREI DELA CUEVA</h1>
                 <p class="hero-subtitle">// Aspiring Web & Cybersecurity Specialist //</p>
                 <p class="hero-description">
@@ -55,7 +56,7 @@
             </div>
         </div>
 
-        <div id="gallery" class="content-section">
+        <div id="gallery" class="content-section" data-aos="fade-up">
             <h2>// GALLERY //</h2>
             <div class="gallery-grid">
                 <div class="gallery-card">
@@ -88,7 +89,7 @@
             </div>
         </div>
 
-        <div id="about" class="content-section">
+        <div id="about" class="content-section" data-aos="fade-up">
             <h2>// ABOUT ME //</h2>
             <div class="about-container">
                 <div class="profile-picture-container">
@@ -127,7 +128,7 @@
             </ul>
         </div>
 
-        <div id="socials" class="content-section">
+        <div id="socials" class="content-section" data-aos="fade-up">
             <h2>// SOCIALS //</h2>
             <p>Connect with me through the following platforms:</p>
             <div class="social-icons-container">
@@ -192,14 +193,12 @@
         function handleLinkClick(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
-            mainContent.style.opacity = '0';
-            setTimeout(() => {
-                heroSection.style.display = 'none';
-                showSection(targetId);
-                mainContent.style.opacity = '1';
-            }, 300);
-            hamburgerBtn.classList.remove('active');
-            navMenu.classList.remove('active');
+
+            if (document.querySelector(this.getAttribute('href'))) {
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         }
 
         navLinks.forEach(link => {
@@ -233,6 +232,13 @@
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('scroll', handleScroll);
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
     </script>
 </body>
 
