@@ -218,7 +218,6 @@ body.light-mode #nav-menu ul li a {
     padding: 40px 5%;
     max-width: 1100px;
     margin: 0 auto;
-    transition: opacity 0.3s ease-in-out;
 }
 
 .content-section {
@@ -499,6 +498,39 @@ body.light-mode .gallery-card:hover {
 
 body.light-mode #socials .social-icons-container a:hover {
     text-shadow: none;
+}
+
+#main-footer {
+    padding: 40px 5%;
+    background-color: var(--mid-bg);
+    border-top: 2px solid var(--primary-color);
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+}
+
+.footer-socials {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.footer-socials a {
+    color: var(--light-text);
+    font-size: 1.8rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+#main-footer p {
+    color: var(--dark-text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed) ease;
 }
 
 @media (max-width: 960px) {

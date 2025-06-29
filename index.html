@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio | Kim Andrei Dela Cueva</title>
+    <title>Dela Cueva</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -97,10 +97,11 @@
                 </div>
                 <div class="about-text">
                     <p>
-                        Hello, I'm Kim Andrei Dela Cueva, a 20-year-old third-year student at the Polytechnic University
-                        of the Philippines. I have a strong passion for coding and am currently focused on learning both
-                        frontend and backend development, as well as working with databases. My goal is to pursue a
-                        career in Information Technology and eventually specialize in cybersecurity.
+                        Hello, I'm Kim Andrei Dela Cueva, a 20-year-old third-year Information Technology student at the
+                        Polytechnic University of the Philippines. I am passionate about coding and currently focused on
+                        expanding my skills in both front-end and back-end development, as well as database management.
+                        With a strong interest in problem-solving and digital innovation, I aim to build a successful
+                        career in the IT industry and eventually specialize in the field of cybersecurity.
                     </p>
                 </div>
             </div>
@@ -140,9 +141,29 @@
                         class="fab fa-github"></i></a>
                 <a href="mailto:dreikim19@gmail.com" target="_blank" aria-label="Email"><i
                         class="fas fa-envelope"></i></a>
+                <a href="https://open.spotify.com/user/21f65pbndzsc6hpznzduh24ky?si=c9bab85a06fe46b8" target="_blank"
+                    aria-label="Spotify"><i class="fab fa-spotify"></i></a>
             </div>
         </div>
     </main>
+
+    <footer id="main-footer">
+        <div class="footer-content">
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/kim.andrei19" target="_blank" aria-label="Facebook"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/delacuevakim/" target="_blank" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://github.com/kimandrei19" target="_blank" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="mailto:dreikim19@gmail.com" target="_blank" aria-label="Email"><i
+                        class="fas fa-envelope"></i></a>
+                <a href="https://open.spotify.com/user/21f65pbndzsc6hpznzduh24ky?si=c9bab85a06fe46b8" target="_blank"
+                    aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+            </div>
+            <p>© 2024 Kim Andrei Dela Cueva. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
         const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -154,7 +175,6 @@
         const body = document.body;
         const ctaButton = document.getElementById('cta-button');
         const heroSection = document.getElementById('hero');
-
         const heroImage = document.getElementById('hero-image');
         const heroText = document.getElementById('hero-text');
         const scanline = document.querySelector('.scanline');
@@ -180,25 +200,16 @@
             navMenu.classList.toggle('active');
         });
 
-        function showSection(targetId) {
-            contentSections.forEach(section => {
-                section.classList.remove('visible');
-            });
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.add('visible');
-            }
-        }
-
         function handleLinkClick(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-
-            if (document.querySelector(this.getAttribute('href'))) {
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+            const targetId = this.getAttribute('href');
+            if (document.querySelector(targetId)) {
+                document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
             }
+            navMenu.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
         }
 
         navLinks.forEach(link => {
@@ -207,19 +218,15 @@
 
         ctaButton.addEventListener('click', handleLinkClick);
 
-        function handleMouseMove(e) {
+        function handleParallax(e) {
             if (window.innerWidth < 960) return;
-
             const { clientX, clientY } = e;
             const centerX = window.innerWidth / 2;
             const centerY = window.innerHeight / 2;
-
             const offsetX = (clientX - centerX) / centerX;
             const offsetY = (clientY - centerY) / centerY;
-
             const imageStrength = 15;
             const textStrength = 8;
-
             heroImage.style.transform = `translate(${offsetX * imageStrength}px, ${offsetY * imageStrength}px)`;
             heroText.style.transform = `translate(${-offsetX * textStrength}px, ${-offsetY * textStrength}px)`;
         }
@@ -230,7 +237,7 @@
             backgroundOverlay.style.transform = `translateY(${scrollY * 0.2}px)`;
         }
 
-        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mousemove', handleParallax);
         window.addEventListener('scroll', handleScroll);
     </script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
